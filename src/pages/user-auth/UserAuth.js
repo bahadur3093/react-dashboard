@@ -1,4 +1,3 @@
-import Button from "../../components/Button/Button";
 import React, {useState} from "react";
 import Signin from "./signin/Signin";
 import Signup from "./signup/Signup";
@@ -9,10 +8,9 @@ import { AiFillApple, AiFillGoogleCircle } from "react-icons/ai";
 import "./UserAuth.scss";
 
 const UserAuth = () => {
-    const [isLogin, setisLogin] = useState(false);
+    const [isLogin, setisLogin] = useState(true);
     let auth;
     function handleAuthScreenClick(status) {
-        debugger;
         setisLogin(status)
     };
     if (isLogin) {
@@ -22,7 +20,7 @@ const UserAuth = () => {
     }
   return (
     <div className="auth-wrapper bg-yellow flex flex-wrap items-center">
-      <div className="auth-content mx-auto w-1/2 bg-white p-4 rounded-md shadow-black">
+      <div className="auth-content mx-auto w-1/3 xs:w-full sm:w-1/2 md:w-1/3 bg-white p-4 rounded-2xl shadow-grey-400 shadow-md">
         <div className="logo-wrapper flex justify-center mb-4">
           <svg
             width="200"
@@ -77,37 +75,31 @@ const UserAuth = () => {
             ></path>
           </svg>
         </div>
-        <div className="navigation flex flex-row items-center justify-center py-2 rounded-md bg-grey">
-          <button class="transparent hover:bg-black hover:text-white p-2 rounded-md w-full transition ease-in-out duration-300 mx-2"
+        <div className="navigation flex flex-row items-center justify-center py-2 rounded-2xl bg-grey-50">
+          <button className={`transparent hover:bg-black hover:text-white p-2 rounded-md w-full transition ease-in-out duration-300 mx-2 ${isLogin ? 'bg-black text-white' : ''}`}
           onClick={() => handleAuthScreenClick(true)}>
             Login
           </button>
-          <button class="transparent hover:bg-black hover:text-white p-2 rounded-md w-full ease-in-out transition ease-in-out duration-300 mx-2"
+          <button className={`transparent hover:bg-black hover:text-white p-2 rounded-md w-full transition ease-in-out duration-300 mx-2 ${!isLogin ? 'bg-black text-white' : ''}`}
           onClick={() => handleAuthScreenClick(false)}>
-            {auth}
+            Signup
           </button>
         </div>
         <div className="content my-4">
-            Content
+            {auth}
         </div>
         <div className="flex flex-col items-center">
           <p className="w-full text-center mb-4">or</p>
-          <Button
-            buttonLabel={"Signin with google"}
-            class={
-              "flex items-center justify-center transparent text-black px-4 py-2 border-2 border-black rounded-md mb-2 w-1/2 hover:bg-black hover:text-white"
-            }
-          >
+          <button
+            className="flex items-center justify-center transparent text-black px-4 py-2 border-2 border-black rounded-md mb-2 w-1/2 hover:bg-black hover:text-white"
+            >
             <AiFillApple size={24} /> Signin with Apple
-          </Button>
-          <Button
-            buttonLabel={"Signin with apple"}
-            class={
-              "flex items-center justify-center transparent text-black px-4 py-2 border-2 border-black rounded-md w-1/2 hover:bg-black hover:text-white"
-            }
-          >
+          </button>
+          <button
+            className="flex items-center justify-center transparent text-black px-4 py-2 border-2 border-black rounded-md w-1/2 hover:bg-black hover:text-white"
+            >
             <AiFillGoogleCircle size={24} /> Signin with Google
-          </Button>
+          </button>
         </div>
       </div>
     </div>
